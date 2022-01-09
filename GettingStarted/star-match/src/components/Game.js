@@ -5,15 +5,23 @@ import StarsDisplay from './StarsDisplay';
 import PlayNumber from './PlayNumber';
 import PlayAgain from './PlayAgain';
 
+
+const useGameState2 = timeLimit => {
+
+};
+
+
+
+
 const useGameState = timeLimit => {
     const [stars, setStars] = useState(utils.random(1, 9));
     const [availableNums, setAvailableNums] = useState(utils.range(1, 9));
     const [candidateNums, setCandidateNums] = useState([]);
-    const [secondsLeft, setSecondsLeft] = useState(10);
+    const [secondsLeft, setSecondsLeft] = useState(9);
   
     useEffect(() => {
       if (secondsLeft > 0 && availableNums.length > 0) {
-        const timerId = setTimeout(() => setSecondsLeft(secondsLeft - 1), 1000);
+        const timerId = setTimeout(() => setSecondsLeft(secondsLeft - 1), 2000);
         return () => clearTimeout(timerId);
       }
     });
@@ -34,7 +42,7 @@ const useGameState = timeLimit => {
     return { stars, availableNums, candidateNums, secondsLeft, setGameState };
   };
   
-  const Game = props => {
+const Game = props => {
     const {
       stars,
       availableNums,
